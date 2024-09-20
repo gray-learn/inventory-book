@@ -88,46 +88,61 @@ npm run serve
 
 The app will now be running at http://localhost:8080.
 
-## Folder Structure
-
-### Backend Folder Structure                # Vue.js project configuration
-/book_inventory_backend/
-├── inventory/                 # Django app folder
-│   ├── migrations/            # Database migration files
-│   ├── models.py              # Book model definition
-│   ├── serializers.py         # API serializers
-│   ├── views.py               # API viewsets
-│   ├── urls.py                # App-specific URL routing
-│   ├── tests/                 # Unit tests for the app
-│   └── admin.py               # Admin panel configuration
-├── book_inventory/            # Django project folder
-│   ├── settings.py            # Project settings
-│   ├── urls.py                # Project-wide URL routing
-│   └── wsgi.py                # WSGI entry point for the app
-├── manage.py                  # Django project management command
-├── requirements.txt           # Python package dependencies
-└── README.md                  # Project documentation
-
-### Frontend Folder Structure
-/book-inventory-frontend
-├── /src
-│   ├── /assets                # Static assets (CSS, images, etc.)
-│   ├── /components
-│   │   ├── BookForm.vue        # Component for adding new books
-│   │   ├── BookList.vue        # Component for displaying the list of books
-│   │   └── BookFilter.vue      # Component for filtering books
-│   ├── App.vue                # Main component combining the form, list, and filter
-│   ├── main.js                # Entry point for Vue.js application
-│   ├── router.js              # Optional: If using Vue Router for navigation
-├── /public
-│   ├── index.html             # Main HTML template
-├── /tests                     # Unit and integration tests for Vue components
-│   ├── BookForm.spec.js       # Test for BookForm.vue
-│   ├── BookList.spec.js       # Test for BookList.vue
-│   └── BookFilter.spec.js     # Test for BookFilter.vue
-├── package.json               # Project dependencies and scripts
-├── README.md                  # This file
-└── vue.config.js              # Vue.js project configuration
+### Folder Structure            
+backend
+   |-- book_inventory
+   |   |-- __init__.py
+   |   |-- asgi.py
+   |   |-- settings.py
+   |   |-- urls.py
+   |   |-- wsgi.py
+   |-- inventory
+   |   |-- __init__.py
+   |   |-- admin.py
+   |   |-- apps.py
+   |   |-- forms.py
+   |   |-- migrations
+   |   |   |-- 0001_initial.py
+   |   |   |-- __init__.py
+   |   |-- models.py
+   |   |-- serializers.py
+   |   |-- templates
+   |   |   |-- inventory
+   |   |   |   |-- index.html
+   |   |-- tests
+   |   |   |-- __init__.py
+   |   |   |-- test_models.py
+   |   |   |-- test_serializers.py
+   |   |   |-- test_views.py
+   |   |-- urls.py
+   |   |-- views.py
+   |-- manage.py
+frontend
+   |-- .gitignore
+   |-- README.md
+   |-- babel.config.js
+   |-- jsconfig.json
+   |-- package-lock.json
+   |-- package.json
+   |-- public
+   |   |-- favicon.ico
+   |   |-- index.html
+   |-- src
+   |   |-- App.vue
+   |   |-- assets
+   |   |   |-- logo.png
+   |   |-- components
+   |   |   |-- BookFilter.vue
+   |   |   |-- BookForm.vue
+   |   |   |-- BookList.vue
+   |   |-- main.js
+   |-- tests
+   |   |-- unit
+   |   |   |-- BookFilter.spec.js
+   |   |   |-- BookForm.spec.js
+   |   |   |-- BookList.spec.js
+   |-- vue.config.js
+   |-- yarn.lock
 
 
 ## API Endpoints
