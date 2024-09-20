@@ -92,42 +92,43 @@ The app will now be running at http://localhost:8080.
 
 ### Backend Folder Structure                # Vue.js project configuration
 /book_inventory_backend/
-├── inventory/ # Django app folder
-│ ├── migrations/ # Database migration files
-│ ├── models.py # Book model definition
-│ ├── serializers.py # API serializers
-│ ├── views.py # API viewsets
-│ ├── urls.py # App-specific URL routing
-│ ├── tests/ # Unit tests for the app
-│ └── admin.py # Admin panel configuration
-├── book_inventory/ # Django project folder
-│ ├── settings.py # Project settings
-│ ├── urls.py # Project-wide URL routing
-│ └── wsgi.py # WSGI entry point for the app
-├── manage.py # Django project management command
-├── requirements.txt # Python package dependencies
-└── README.md # Project documentation
+├── inventory/                 # Django app folder
+│   ├── migrations/            # Database migration files
+│   ├── models.py              # Book model definition
+│   ├── serializers.py         # API serializers
+│   ├── views.py               # API viewsets
+│   ├── urls.py                # App-specific URL routing
+│   ├── tests/                 # Unit tests for the app
+│   └── admin.py               # Admin panel configuration
+├── book_inventory/            # Django project folder
+│   ├── settings.py            # Project settings
+│   ├── urls.py                # Project-wide URL routing
+│   └── wsgi.py                # WSGI entry point for the app
+├── manage.py                  # Django project management command
+├── requirements.txt           # Python package dependencies
+└── README.md                  # Project documentation
+
 ### Frontend Folder Structure
 /book-inventory-frontend
-│
 ├── /src
-│ ├── /assets # Static assets (CSS, images, etc.)
-│ ├── /components
-│ │ ├── BookForm.vue # Component for adding new books
-│ │ ├── BookList.vue # Component for displaying the list of books
-│ │ └── BookFilter.vue # Component for filtering books
-│ ├── App.vue # Main component combining the form, list, and filter
-│ ├── main.js # Entry point for Vue.js application
-│ ├── router.js # Optional: If using Vue Router for navigation
+│   ├── /assets                # Static assets (CSS, images, etc.)
+│   ├── /components
+│   │   ├── BookForm.vue        # Component for adding new books
+│   │   ├── BookList.vue        # Component for displaying the list of books
+│   │   └── BookFilter.vue      # Component for filtering books
+│   ├── App.vue                # Main component combining the form, list, and filter
+│   ├── main.js                # Entry point for Vue.js application
+│   ├── router.js              # Optional: If using Vue Router for navigation
 ├── /public
-│ ├── index.html # Main HTML template
-├── /tests # Unit and integration tests for Vue components
-│ ├── BookForm.spec.js # Test for BookForm.vue
-│ ├── BookList.spec.js # Test for BookList.vue
-│ └── BookFilter.spec.js # Test for BookFilter.vue
-├── package.json # Project dependencies and scripts
-├── README.md # This file
-└── vue.config.js # Vue.js project configuration
+│   ├── index.html             # Main HTML template
+├── /tests                     # Unit and integration tests for Vue components
+│   ├── BookForm.spec.js       # Test for BookForm.vue
+│   ├── BookList.spec.js       # Test for BookList.vue
+│   └── BookFilter.spec.js     # Test for BookFilter.vue
+├── package.json               # Project dependencies and scripts
+├── README.md                  # This file
+└── vue.config.js              # Vue.js project configuration
+
 
 ## API Endpoints
 Backend API Endpoints
