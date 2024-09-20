@@ -5,8 +5,8 @@
     <BookFilter @filter-applied="applyFilter" />
     <BookList :books="books" />
     <div class="export-buttons">
-      <button @click="exportData('csv')">Export as CSV</button>
-      <button @click="exportData('json')">Export as JSON</button>
+      <button @click="exportCSV">Export as CSV</button>
+      <button @click="exportJSON">Export as JSON</button>
     </div>
   </div>
 </template>
@@ -16,6 +16,8 @@ import axios from 'axios';
 import BookForm from './components/BookForm.vue';
 import BookList from './components/BookList.vue';
 import BookFilter from './components/BookFilter.vue';
+import { saveAs } from 'file-saver'; // Import file-saver
+import { exportToCsv } from 'json-to-csv-export';
 
 export default {
   name: 'App',
@@ -25,9 +27,30 @@ export default {
     BookFilter
   },
   data() {
-    return {
-      books: []
-    };
+      return {
+        books: [],  // Store the books fetched from the backend
+        fields: [
+          { label: 'ID', key: 'id' },
+          { label: 'Title', key: 'title' },
+          { label: 'Author', key: 'author' },
+          { label: 'Genre', key: 'genre' },
+          { label: 'Publication Date', key: 'publication_date' },
+          { label: 'ISBN', key: 'isbn' }
+        ],
+      };
+  },
+  computed: {
+    formattedBooks() {
+      // Format books for CSV download
+      return this.books.map(book => ({
+        id: book.id,
+        title: book.title,
+        author: book.author,
+        genre: book.genre,
+        publication_date: book.publication_date,
+        isbn: book.isbn
+      }));
+    }
   },
   methods: {
     async fetchBooks() {
@@ -43,18 +66,48 @@ export default {
     },
     async applyFilter(filter) {
       try {
-        const response = await axios.get('/api/books/filter/', { params: filter });
+        const response = await axios.get('/books/filter/', { params: filter });
         this.books = response.data;
       } catch (error) {
         console.error('Error filtering books:', error);
       }
     },
-    exportData(format) {
-      window.location.href = `/api/books/export/?format=${format}`;
+    async exportJSON() {
+      // Convert books array to a JSON string
+      const jsonData = JSON.stringify(this.books, null, 2); // Pretty print with 2 spaces
+      const blob = new Blob([jsonData], { type: 'application/json' });
+      
+      // Use FileSaver to save the file
+      saveAs(blob, 'books_inventory.json');
+    },
+    async exportCSV() {
+      try {
+        // Fetch the latest books data from the backend
+        const response = await axios.get('/api/books/'); // Ensure this URL matches your backend
+        const books = response.data; // Get the books from the response
+
+        // Customize the fields and file name for CSV export
+        const dataToExport = books.map((book) => ({
+          ID: book.id,
+          Title: book.title,
+          Author: book.author,
+          Genre: book.genre,
+          PublicationDate: book.publication_date,
+          ISBN: book.isbn,
+        }));
+
+        exportToCsv({
+          data: dataToExport,
+          filename: 'books_inventory.csv',
+          delimiter: ',',
+        });
+      } catch (error) {
+        console.error('Error exporting CSV:', error);
+      }
+    },
+    mounted() {
+      this.fetchBooks();
     }
-  },
-  mounted() {
-    this.fetchBooks();
   }
 };
 </script>
