@@ -7,6 +7,7 @@
     <div class="export-buttons">
       <button @click="exportCSV">Export as CSV</button>
       <button @click="exportJSON">Export as JSON</button>
+      <button @click="refresh">Refresh</button>
     </div>
   </div>
 </template>
@@ -53,6 +54,9 @@ export default {
     }
   },
   methods: {
+    refresh() {
+      this.fetchBooks();
+    },
     async fetchBooks() {
       try {
         const response = await axios.get('/api/books/');
@@ -105,8 +109,9 @@ export default {
         console.error('Error exporting CSV:', error);
       }
     },
-    mounted() {
-      this.fetchBooks();
+    created() {
+      console.log('fetchBooks called on load');
+      this.fetchBooks(); // Fetch books on component load
     }
   }
 };
