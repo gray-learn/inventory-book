@@ -88,7 +88,8 @@ npm run serve
 
 The app will now be running at http://localhost:8080.
 
-### Folder Structure            
+### Folder Structure 
+
 ```plaintext
 backend
    |-- book_inventory
@@ -144,9 +145,8 @@ frontend
    |   |   |-- BookList.spec.js
    |-- vue.config.js
    |-- yarn.lock
-
-
-## API Endpoints
+```
+### API Endpoints
 Backend API Endpoints
 Books List: Retrieve the list of all books.
 GET /api/books/
