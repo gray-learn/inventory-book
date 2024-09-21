@@ -89,6 +89,7 @@ npm run serve
 The app will now be running at http://localhost:8080.
 
 ### Folder Structure            
+```plaintext
 backend
    |-- book_inventory
    |   |-- __init__.py
